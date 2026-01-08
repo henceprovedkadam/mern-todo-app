@@ -44,52 +44,46 @@ mern-todo-app/
 Before running the project with a single command, dependencies must be installed once in all directories.
 
 Backend setup:
-    cd backend
-    npm install
+    ```cd backend```,
+    ```npm install```
 
 Frontend setup:
-    cd frontend
-    npm install
+    ```cd frontend```,
+    ```npm install```
 
 Root setup:
-    cd ..
-    npm install
+    ```cd ..```,
+    ```npm install```
 
 This installs concurrently and other root-level dependencies.
 
 ## Run Project (Single Command)
 
 From the root directory:
-    npm run dev
+    ```npm run dev```
 
 This command uses concurrently to start both the frontend and backend together.
 
 ## Alternative: Run Manually
 
 Backend:
-    cd backend
-    npm run dev
+   ```cd backend```,
+    ```npm run dev```
 
 Frontend:
-    cd frontend
-    npm run dev
+   ```cd frontend```,
+    ```npm run dev```
 
 Run frontend and backend in separate terminals.
 
 ## Environment Variables
 
 Backend (backend/.env):
-    PORT=5000
-    MONGO_URI=your_mongodb_connection_string
+    ```PORT=5000```,
+    ```MONGO_URI=your_mongodb_connection_string```
 
 Frontend (frontend/.env):
-    VITE_API_BASE_URL=http://localhost:5000
-
-## API Endpoints
-- GET /api/todos – Fetch all todos
-- POST /api/todos – Create a todo
-- PUT /api/todos/:id – Update a todo
-- DELETE /api/todos/:id – Delete a todo
+    ```VITE_API_BASE_URL=your_client_url```
 
 ## Purpose
 
