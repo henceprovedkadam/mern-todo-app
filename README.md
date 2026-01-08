@@ -2,6 +2,9 @@
 
 A full-stack MERN (MongoDB, Express, React, Node.js) todo application with a modern UI built using Tailwind CSS. The application supports full CRUD operations with persistent data stored in MongoDB.
 
+## Demo Video
+https://github.com/user-attachments/assets/9bc905a1-28e1-462c-8d8a-4d7efeb40919
+
 ## Features
 - Create, read, update, and delete todos
 - RESTful API using Express and Node.js
