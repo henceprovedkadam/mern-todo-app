@@ -6,13 +6,14 @@ A full-stack MERN (MongoDB, Express, React, Node.js) todo application with a mod
 https://github.com/user-attachments/assets/9bc905a1-28e1-462c-8d8a-4d7efeb40919
 
 ## Features
-- Create, read, update, and delete todos
-- RESTful API using Express and Node.js
-- MongoDB for persistent data storage
+- Full CRUD operations for todos (add, view, edit, delete, update status)
+- RESTful API built with Express.js and Node.js
+- User authentication (signup, login, logout) with protected routes
+- MongoDB for persistent storage of users and todos
 - React frontend styled with Tailwind CSS
-- Environment variable based configuration
-- Frontend and backend can be run together using concurrently
-- Clear separation of frontend and backend
+- Todo filtering on the frontend: **All**, **Completed**, and **Pending**
+- Environment-based configuration for development and production
+- Clear separation between frontend and backend code
 
 ## Tech Stack
 
