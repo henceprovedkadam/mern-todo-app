@@ -43,21 +43,41 @@ mern-todo-app/
 - npm
 - MongoDB (local or cloud)
 
+
+## Environment Variables
+
+Backend (backend/.env):
+```env
+    PORT=your_port_number,
+    MONGO_URI=your_mongodb_connection_string
+```
+
+Frontend (frontend/.env):
+```env
+    VITE_API_BASE_URL=your_client_url
+```
+
 ## First-Time Setup (Required Once)
 
 Before running the project with a single command, dependencies must be installed once in all directories.
 
 Backend setup:
-    ```cd backend```,
-    ```npm install```
+```bash
+    cd backend
+    npm install
+```
 
 Frontend setup:
-    ```cd frontend```,
-    ```npm install```
+```bash
+    cd frontend
+    npm install
+```
 
 Root setup:
-    ```cd ..```,
-    ```npm install```
+```bash    
+    cd ..
+    npm install
+```
 
 This installs concurrently and other root-level dependencies.
 
@@ -79,15 +99,6 @@ Frontend:
     ```npm run dev```
 
 Run frontend and backend in separate terminals.
-
-## Environment Variables
-
-Backend (backend/.env):
-    ```PORT=5000```,
-    ```MONGO_URI=your_mongodb_connection_string```
-
-Frontend (frontend/.env):
-    ```VITE_API_BASE_URL=your_client_url```
 
 ## Purpose
 
