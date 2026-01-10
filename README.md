@@ -72,7 +72,7 @@ This command uses concurrently to start both the frontend and backend together.
 
 Backend:
    ```cd backend```,
-    ```npm run dev```
+    ```npm start```
 
 Frontend:
    ```cd frontend```,
