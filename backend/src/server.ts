@@ -2,12 +2,17 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
+import "dotenv/config";
 import eventsRouter from "./routes/events.routes.js";
 import usersRouter from "./routes/users.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const mongoUrl = process.env.MONGODB_URL;
+
+if (!mongoUrl) {
+  throw new Error("MONGODB_URL string is undefined");
+}
 
 app.use(express.json());
 app.use(
@@ -20,8 +25,8 @@ app.use(
 app.use(cookieParser());
 
 mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(console.log("MongoDb connected."))
+  .connect(mongoUrl)
+  .then(() => console.log("MongoDb connected."))
   .catch((error) => {
     console.error(error.message);
   });

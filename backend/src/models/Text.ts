@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import userModel from "./User.js";
 
 const textSchema = new mongoose.Schema(
   {
