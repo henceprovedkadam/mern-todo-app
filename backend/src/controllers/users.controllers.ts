@@ -1,8 +1,9 @@
 import userModel from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { RequestHandler } from "express";
 
-export const signup = async (req, res) => {
+export const signup: RequestHandler = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -25,11 +26,14 @@ export const signup = async (req, res) => {
       res.status(200).json({ msg: "Sign-up Successful", user: user });
     }
   } catch (error) {
-    res.status(500).json({ error: "From Signup", msg: error.message });
+    if (error instanceof Error) {
+      console.log("Error: ", error);
+      res.status(500).json({ msg: "Server Error", error: error.message });
+    }
   }
 };
 
-export const login = async (req, res) => {
+export const login: RequestHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log("LOGIN: ", email, password);
@@ -42,9 +46,9 @@ export const login = async (req, res) => {
         // GETTING THE USER ID
         const userId = user.id;
         const userName = user.name;
-
+        const privateKey: string | undefined = process.env.PRIVATE_KEY;
         // GENERERATING TOKEN
-        const token = jwt.sign({ userId, userName }, process.env.PRIVATE_KEY, {
+        const token = jwt.sign({ userId, userName }, privateKey as string, {
           expiresIn: "30d",
         });
 
@@ -58,7 +62,7 @@ export const login = async (req, res) => {
 
         return res
           .status(200)
-          .cookie("token", token, cookieOptions)
+          .cookie("token", token, cookieOptions as object)
           .json({ msg: "Login successful", token: token });
       } else {
         return res.status(400).json({ msg: "Incorrect Password" });
@@ -67,15 +71,18 @@ export const login = async (req, res) => {
       return res.status(400).json({ msg: "Email does not exist." });
     }
   } catch (error) {
-    return res.status(500).json({ error: "From Login", msg: error.message });
+    if (error instanceof Error) {
+      console.log("Error: ", error);
+      res.status(500).json({ msg: "Server Error", error: error.message });
+    }
   }
 };
 
-export const logout = (req, res) => {
+export const logout: RequestHandler = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     secure: true, // Use true in production with HTTPS
-    sameSite: "None", // Required for cross-origin cookies
+    sameSite: "none", // Required for cross-origin cookies
   });
   return res.status(200).json({ msg: "Logout successful", success: true });
 };

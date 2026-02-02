@@ -1,7 +1,12 @@
 import jwt from "jsonwebtoken";
+import {Request, Response, NextFunction} from 'express'
 
-export const verify = async (req, res, next) => {
+export const verify = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.token;
+  const privateKey = process.env.PRIVATE_KEY;
+  if(!privateKey){
+    throw new Error("PRIVATE_KEY string is undefined");
+  }
 
   // IF NO TOKEN FOUND
   if (!token) {
@@ -10,7 +15,7 @@ export const verify = async (req, res, next) => {
   } else {
     // TOKEN FOUND & THEN DECODING STARTS
     try {
-      const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+      const decoded = jwt.verify(token, privateKey);
       console.log("VERIFY: Authorized");
       req.user = decoded;
       next();
