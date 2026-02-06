@@ -11,7 +11,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
 
   // POST REQUEST
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
       .post(`${API_BASE}/api/users/signup`, {
