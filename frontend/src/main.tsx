@@ -1,12 +1,18 @@
 // import { StrictMode } from 'react'
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
+import App from "./App.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Welcome from "./WelcomePages/Welcome.jsx";
-import Login from "./WelcomePages/Login.jsx";
-import SignUp from "./WelcomePages/SignUp.jsx";
-createRoot(document.getElementById("root")).render(
+import Welcome from "./WelcomePages/Welcome.js";
+import Login from "./WelcomePages/Login.js";
+import SignUp from "./WelcomePages/SignUp.js";
+
+const rootElement = document.getElementById("root");
+if(!rootElement){
+  throw new Error("Root Element not found.")
+}
+
+createRoot(rootElement).render(
   // <StrictMode>
   <BrowserRouter>
     <Routes>

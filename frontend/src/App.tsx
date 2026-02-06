@@ -1,4 +1,3 @@
-import "./App.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdDeleteOutline } from "react-icons/md";
@@ -16,7 +15,7 @@ function App() {
   const [text, setText] = useState("");
   const [users, setUsers] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  const [editId, setEditId] = useState(null);
+  const [editId, setEditId] = useState("");
   const [btnText, setBtnText] = useState("Add");
   const [sort, setSort] = useState("all");
   const [name, setName] = useState("");
@@ -59,7 +58,7 @@ function App() {
       });
   }, [refresh, sort, navigate, API_BASE]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>)=> {
     e.preventDefault();
     console.log("Submitting: ", text);
     if (editId === null) {
@@ -88,7 +87,7 @@ function App() {
           console.log(response);
           setRefresh((prev) => !prev);
           setText("");
-          setEditId(null);
+          setEditId("");
           setBtnText("Add");
         })
         .catch((error) => {
@@ -97,7 +96,7 @@ function App() {
     }
   };
 
-  const deleteById = (id) => {
+  const deleteById = (id: string) => {
     axios
       .delete(`${API_BASE}/api/events/deletebyid/${id}`, {
         withCredentials: true,
@@ -111,13 +110,13 @@ function App() {
       });
   };
 
-  const editById = (id, newText) => {
+  const editById = (id: string, newText: string) => {
     setEditId(id);
     setText(newText);
     setBtnText("Update");
   };
 
-  const status = (id, isCompleted) => {
+  const status = (id: string, isCompleted: boolean) => {
     console.log(id, isCompleted);
     axios
       .put(
@@ -135,7 +134,7 @@ function App() {
   };
 
   const escBack = () => {
-    setEditId(null);
+    setEditId("");
     setText("");
     setBtnText("Add");
   };
@@ -153,6 +152,12 @@ function App() {
         console.log(error.message);
       });
   };
+
+  type todo = {
+    _id: string;
+    text: string;
+    isCompleted: boolean;
+  }
   return (
     <>
       {/* NAME AND LOGOUT */}
@@ -266,7 +271,7 @@ function App() {
                 </thead>
                 {/* TABLE BODY */}
                 <tbody className="border">
-                  {users.map((user, index) => {
+                  {users.map((user: todo, index) => {
                     return (
                       <tr
                         key={user._id || index}
