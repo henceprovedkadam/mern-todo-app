@@ -64,6 +64,7 @@ Before running the project with a single command, dependencies must be installed
 Backend setup:
 ```bash
     cd backend
+    npm run build
     npm install
 ```
 
@@ -82,7 +83,7 @@ Root setup:
 This installs concurrently and other root-level dependencies.
 
 ## Run Project (Single Command)
-
+   
 From the root directory:
     ```npm run dev```
 
@@ -92,6 +93,7 @@ This command uses concurrently to start both the frontend and backend together.
 
 Backend:
    ```cd backend```,
+   ```npm run build```,
     ```npm start```
 
 Frontend:
